@@ -1,0 +1,83 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;">
+<link rel="stylesheet" type="text/css" href="/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="/bootstrap/css/bootstrap-responsive.min.css">
+<style type="text/css">
+body{
+	margin: auto;
+	max-width: 960px;
+	padding-top: 50px;
+}
+p{
+	text-indent: 2em;
+}
+.navbar-inner{
+	max-width: 960px;
+	margin: auto;
+}
+</style>
+</head>
+<body data-spy="scroll" data-target=".navbar">
+	
+	<div class="navbar navbar-fixed-top">
+	  <div class="navbar-inner" style="padding-left: 10px;">
+	  	<a class="brand" href="javascript:void(0);">MagicalPass</a>
+	    <ul class="nav">
+			<li  class="active"><a href="#introduce">简介</a></li>
+			<li><a href="#install">安装</a></li>
+			<li><a href="#usage">使用说明</a></li>
+			<li><a href="#yanli">原理</a></li>
+			<li><a href="#roadmap">Roadmap</a></li>
+		</ul>
+	  </div>
+	</div>
+
+
+	<h2 id="introduce">简介</h2>
+	<h3>目标</h3>
+	<p>你自己都不知道密码。</p>
+	<h3>无须记住密码</h3>
+	<p>如同所有的密码管理应用， MagicalPass 让你不必记住密码， 在尽量保证密码的安全性前提下， 提高密码录入的便捷性。</p>
+	<h3>一切尽在掌握</h3>
+		<p>目前有很多优秀密码管理应用， 密码都保存在服务提供者的服务器中。 尽管承诺密码是加密存储，承诺员工不会访问密码，但密码记录跟密钥都在那里， 谁知道哪天不出什么意外？</p>
+	<p>MagicalPass 把密码记录存在你自己的移动设备中， 对敏感度较高的密码使用 RSA 加密， 分离公私钥， 即使你的设备丢失，密码记录也不会被破解。</p>
+
+	<h2 id="install">安装</h2>
+	android 安装
+	chrome 安装
+	<h2 id="usage">使用</h2>
+
+	<h3>用手机保存密码</h3>
+		<p>使用 chrome 打开需要保存密码的网站登录页面， 输入帐号、密码。 在激活密码控件时会弹出来二维码控件， 使用鼠标点击加号切换到新增记录 tab. 用 MagicalPass 二维码， 便可将该网站的密码保存至手机。</p>
+	<h3>在网页填入密码</h3>
+		<p>打开需要输入密码的登录页面， 将光标移到密码输入控件内， 将弹出二维码， 用 MagicalPass 扫描该二维码即可将对应的密码输入。</p>
+
+	<h2 id="yanli">原理</h2>
+	<h3>密码传输</h3>
+	<ol>
+		<li>chrome plugin 产生随机密钥</li>
+		<li>设备通过二维码获得密钥， 使用该密钥对密码进行 AES 加密。</li>
+		<li>设备把加密后的密码发送到中转服务器。 由于服务器不知道密钥， 无法解密密码。</li>
+		<li>中转服务器把 加密过的密码数据推送到对应客户端</li>
+		<li>chrome plugin 拿到密码数据后解密填入密码控件。</li>
+	</ol>
+	<h3>密码存储</h3>
+	<ul>	
+		<li>简单加密： 把密码转化成 base64 字段存储。 其他人拿到这种加密的密码只需简单换算便可解密。</li>
+		<li>RSA 加密： 应用在第一次使用这种加密类型时， 产生 RSA 公钥私钥。 公钥保存在移动设备中， 方便下次存储密码；私钥保存到 NFC 标签卡片中， 下次需要填入密码时需要对应的 NFC 标签卡片才能解密。当手机设备丢失时， 没有对应的 NFC 标签卡片， 别人无法解密这类密码。</li>
+	</ul>
+	<h2>Roadmap</h2>
+	<ul>
+	<li>生成随机密码</li>
+	<li>备份与恢复</li>
+	<li>用户体验， 简化操作流程</li>
+	<li>修改密码</li>
+	<li>数据远程擦除</li>
+	</ul>
+	<script type="text/javascript" src="/jquery.js"></script>
+	<script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
+</body>
+</html>

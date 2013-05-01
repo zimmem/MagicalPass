@@ -1,0 +1,63 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" type="text/css" href="/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="/bootstrap/css/bootstrap-responsive.min.css">
+<style type="text/css">
+body{
+	margin: auto;
+	max-width: 1200px;
+	min-width: 800px;
+}
+</style>
+</head>
+<body>
+	
+	<div class="navbar">
+	  <div class="navbar-inner">
+	    <ul class="nav">
+			<li  class="active"><a href="#">简介</a></li>
+			<li><a href="#">安装</a></li>
+			<li><a href="#">使用说明</a></li>
+			<li><a href="#">原理</a></li>
+			<li><a href="#">Roadmap</a></li>
+		</ul>
+	  </div>
+	</div>
+
+	<pre>
+简介
+	目标：你自己都不知道密码。
+	无须记住密码
+		如同所有的密码管理应用， MagicalPass 让你不必记住密码， 在尽量保证密码的安全性前提下， 提高密码录入的便捷性。
+	一切尽在掌握
+		目前有很多优秀密码管理应用， 密码都保存在服务提供者的服务器中。 尽管承诺密码是加密存储，承诺员工不会访问密码。但密码记录跟密码都在那里， 谁知道哪天不出什么意外？
+		MagicalPass 把密码记录存在你自己的移动设备中， 对敏感度较高的密码使用 RSA 加密， 分离公私钥， 即使你的设备丢失，密码记录也不会被破解。
+安装
+	android 安装
+	chrome 安装
+使用说明
+	用手机保存密码
+		使用 chrome 打开需要保存密码的网站登录页面， 输入帐号、密码。 在激活密码控件时会弹出来二维码控件， 使用鼠标点击加号切换到新增记录 tab. 用 MagicalPass 二维码， 便可将该网站的密码保存至手机。
+	在网页填入密码
+		打开需要输入密码的登录页面， 将光标移到密码输入控件内， 将弹出二维码， 用 MagicalPass 扫描该二维码即可将对应的密码输入。
+原理
+	密码传输
+		* chrome plugin 产生随机密钥
+		* 设备通过二维码获得密钥， 使用该密钥对密码进行 AES 加密。
+		* 设备把加密后的密码发送到中转服务器。 由于服务器不知道密钥， 无法解密密码。
+		* 中转服务器把 加密过的密码数据推送到对应客户端
+		* chrome plugin 拿到密码数据后解密填入密码控件。
+	密码存储
+		简单加密： 把密码转化成 base64 字段存储。 其他人拿到这种加密的密码只需简单换算便可解密。
+		RSA 加密： 应用在第一次使用这种加密类型时， 产生 RSA 公钥私钥。 公钥保存在移动设备中， 方便下次存储密码；私钥保存到 NFC 标签卡片中， 下次需要填入密码时需要对应的 NFC 标签卡片才能解密。当手机设备丢失时， 没有对应的 NFC 标签卡片， 别人无法解密这类密码。
+road map
+	生成随机密码
+	备份与恢复
+	用户体验， 简化操作流程
+	修改密码
+	数据远程擦除
+	</pre>
+</body>
+</html>
