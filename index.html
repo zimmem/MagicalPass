@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;">
+<link rel="shortcut icon" href="/favicon.png">
 <link rel="stylesheet" type="text/css" href="/bootstrap/css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="/bootstrap/css/bootstrap-responsive.min.css">
 <style type="text/css">
@@ -29,7 +30,7 @@ p{
 			<li  class="active"><a href="#introduce">简介</a></li>
 			<li><a href="#install">安装</a></li>
 			<li><a href="#usage">使用说明</a></li>
-			<li><a href="#yanli">原理</a></li>
+			<li><a href="#theory">原理</a></li>
 			<li><a href="#roadmap">Roadmap</a></li>
 		</ul>
 	  </div>
@@ -55,11 +56,11 @@ p{
 	<h3>在网页填入密码</h3>
 		<p>打开需要输入密码的登录页面， 将光标移到密码输入控件内， 将弹出二维码， 用 MagicalPass 扫描该二维码即可将对应的密码输入。</p>
 
-	<h2 id="yanli">原理</h2>
+	<h2 id="theory">原理</h2>
 	<h3>密码传输</h3>
 	<ol>
 		<li>chrome plugin 产生随机密钥</li>
-		<li>设备通过二维码获得密钥， 使用该密钥对密码进行 AES 加密。</li>
+		<li>设备通过二维码获得密钥， 使用该密钥对将传输的密码进行 AES 加密。</li>
 		<li>设备把加密后的密码发送到中转服务器。 由于服务器不知道密钥， 无法解密密码。</li>
 		<li>中转服务器把 加密过的密码数据推送到对应客户端</li>
 		<li>chrome plugin 拿到密码数据后解密填入密码控件。</li>
@@ -71,11 +72,24 @@ p{
 	</ul>
 	<h2>Roadmap</h2>
 	<ul>
-	<li>生成随机密码</li>
-	<li>备份与恢复</li>
-	<li>用户体验， 简化操作流程</li>
-	<li>修改密码</li>
-	<li>数据远程擦除</li>
+	<li>
+		<strong>创建帐号/修改密码</strong>
+		<p>在创建帐号或修改密码时， 能与移动设备同步。</p>
+	</li>	
+	<li>
+		<strong>生成随机密码</strong>
+		<p>在创建帐号或修改密码时， 使用 MagicalPass 帮你生成复杂的随机密码。</p>
+	</li>
+	<li>
+		<strong>备份与恢复</strong>
+		<p>密码记录的备份与恢复；密钥的备份与恢复。</p>
+	</li>
+	<li><strong>用户体验， 简化操作流程</strong></li>
+	
+	<li>
+		<strong>数据远程擦除</strong>
+		<p>当设备丢失时， 可以远程擦除上面的密码数据</p>
+	</li>
 	</ul>
 	<script type="text/javascript" src="/jquery.js"></script>
 	<script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
