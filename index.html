@@ -19,6 +19,17 @@ p{
 	max-width: 960px;
 	margin: auto;
 }
+.install_block{
+	display:inline-block;
+	margin: 0 50px 0 50px;
+
+}
+.install_block p{
+	text-indent: 0em;
+}
+h2{
+	border-bottom: 1px solid #CCC;
+}
 </style>
 </head>
 <body data-spy="scroll" data-target=".navbar">
@@ -38,39 +49,63 @@ p{
 
 
 	<h2 id="introduce">简介</h2>
-	<h3>目标</h3>
-	<p>你自己都不知道密码。</p>
-	<h3>无须记住密码</h3>
+	<ul>
+	<li><strong>无须记住密码</strong>
 	<p>如同所有的密码管理应用， MagicalPass 让你不必记住密码， 在尽量保证密码的安全性前提下， 提高密码录入的便捷性。</p>
-	<h3>一切尽在掌握</h3>
+	</li>
+	<li><strong>一切尽在掌握</strong>
 		<p>目前有很多优秀密码管理应用， 密码都保存在服务提供者的服务器中。 尽管承诺密码是加密存储，承诺员工不会访问密码，但密码记录跟密钥都在那里， 谁知道哪天不出什么意外？</p>
 	<p>MagicalPass 把密码记录存在你自己的移动设备中， 对敏感度较高的密码使用 RSA 加密， 分离公私钥， 即使你的设备丢失，密码记录也不会被破解。</p>
-
+	</li>
+	</ul>
 	<h2 id="install">安装</h2>
-	android 安装
-	chrome 安装
+	<div>
+		<div class="install_block" align="center">
+		<a href="https://play.google.com/store/apps/details?id=com.zimmem.magicalpass" style="display:block;">
+			<img src="/images/play.png"/>
+			<p>android 安装</p>
+		</a>
+		</div>
+		<div  class="install_block" align="center">
+		<a href="https://chrome.google.com/webstore/detail/magicalpass-plugin/hjohgcebdjjdppniinpdnopbpiaeecec" style="display:block;">
+			<img src="/images/chrome_webstore.png"/>
+			<p>chrome  插件安装</p>
+		</a>
+		</div>
+	</div>
 	<h2 id="usage">使用</h2>
 
-	<h3>用手机保存密码</h3>
+	<ul>
+	<li>
+		<strong>用手机保存密码</strong>
 		<p>使用 chrome 打开需要保存密码的网站登录页面， 输入帐号、密码。 在激活密码控件时会弹出来二维码控件， 使用鼠标点击加号切换到新增记录 tab. 用 MagicalPass 二维码， 便可将该网站的密码保存至手机。</p>
-	<h3>在网页填入密码</h3>
+	</li>
+	<li>
+		<strong>在网页填入密码</strong>
 		<p>打开需要输入密码的登录页面， 将光标移到密码输入控件内， 将弹出二维码， 用 MagicalPass 扫描该二维码即可将对应的密码输入。</p>
+	</li>
+	</ul>
 
 	<h2 id="theory">原理</h2>
-	<h3>密码传输</h3>
-	<ol>
-		<li>chrome plugin 产生随机密钥</li>
-		<li>设备通过二维码获得密钥， 使用该密钥对将传输的密码进行 AES 加密。</li>
-		<li>设备把加密后的密码发送到中转服务器。 由于服务器不知道密钥， 无法解密密码。</li>
-		<li>中转服务器把 加密过的密码数据推送到对应客户端</li>
-		<li>chrome plugin 拿到密码数据后解密填入密码控件。</li>
-	</ol>
-	<h3>密码存储</h3>
-	<ul>	
-		<li>简单加密： 把密码转化成 base64 字段存储。 其他人拿到这种加密的密码只需简单换算便可解密。</li>
-		<li>RSA 加密： 应用在第一次使用这种加密类型时， 产生 RSA 公钥私钥。 公钥保存在移动设备中， 方便下次存储密码；私钥保存到 NFC 标签卡片中， 下次需要填入密码时需要对应的 NFC 标签卡片才能解密。当手机设备丢失时， 没有对应的 NFC 标签卡片， 别人无法解密这类密码。</li>
+	<ul><li>
+		<strong>密码传输</strong>
+		<ol>
+			<li>chrome plugin 产生随机密钥</li>
+			<li>设备通过二维码获得密钥， 使用该密钥对将传输的密码进行 AES 加密。</li>
+			<li>设备把加密后的密码发送到中转服务器。 由于服务器不知道密钥， 无法解密密码。</li>
+			<li>中转服务器把 加密过的密码数据推送到对应客户端</li>
+			<li>chrome plugin 拿到密码数据后解密填入密码控件。</li>
+		</ol>
+		</li>
+	<li>
+		<strong>密码存储</strong>
+		<ul>	
+			<li>简单加密： 把密码转化成 base64 字符串存储。 其他人拿到这种加密的密码只需简单换算便可解密。</li>
+			<li>RSA 加密： 应用在第一次使用这种加密类型时， 产生 RSA 公钥私钥。 公钥保存在移动设备中， 方便下次存储密码；私钥保存到 NFC 标签卡片中， 下次需要填入密码时需要对应的 NFC 标签卡片才能解密。当手机设备丢失时， 没有对应的 NFC 标签卡片， 别人无法解密这类密码。</li>
+		</ul>
+	</li>
 	</ul>
-	<h2>Roadmap</h2>
+	<h2 id="roadmap">Roadmap</h2>
 	<ul>
 	<li>
 		<strong>创建帐号/修改密码</strong>
@@ -91,6 +126,25 @@ p{
 		<p>当设备丢失时， 可以远程擦除上面的密码数据</p>
 	</li>
 	</ul>
+
+	<hr/>
+
+	<div id="disqus_thread"></div>
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'magicalpass'; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    
+
 	<script type="text/javascript" src="/jquery.js"></script>
 	<script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
 </body>
